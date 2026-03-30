@@ -6,11 +6,11 @@ import keyboard
 import matplotlib.pyplot as plt
 
 # --- CONFIGURACIÓN ---
-PORT = "COM5"
-BAUD = 115200
+PORT = "COM5" #ACTUALICE CON SU PUERTO, ESO SE AVERIGUA FÁCIL CON ARDUINO IDE
+BAUD = 115200 #VERIFIQUE QUE SEAN LOS BAUDIOS CORRECTOS
 
 # Carpeta de salida
-OUTPUT_DIR = r"E:\PUCP\Biomecatronica\Sensor_MAX30101\Datos"
+OUTPUT_DIR = r"E:\PUCP\Biomecatronica\Sensor_MAX30101\Datos" #ACTUALICE CON SU RUTA ACTUAL
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Nombre de archivo con timestamp
@@ -21,8 +21,8 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, f"max30101_datos_{timestamp}.csv")
 ser = serial.Serial(PORT, BAUD, timeout=1)
 time.sleep(2)
 
-print("📡 Capturando datos del MAX30101...")
-print("👉 Presiona '1', '2' o '3' para cambiar de clase. Presiona 'ESPACIO' para terminar.")
+print("Capturando datos del MAX30101...")
+print("Presiona '1', '2' o '3' para cambiar de clase. Presiona 'ESPACIO' para terminar.") #IMPORTANTE PARA ETIQUETAR
 
 # --- LISTA DE DATOS ---
 data = []
@@ -50,19 +50,19 @@ x_vals, red_vals, ir_vals, green_vals, class_vals = [], [], [], [], []
 # --- LOOP ---
 while True:
     if keyboard.is_pressed("space"):  # terminar
-        print("⏹ Captura finalizada por el usuario.")
+        print("Captura finalizada por el usuario.")
         break
     elif keyboard.is_pressed("1"):
         current_class = "Clase 1"; class_numeric = 1
-        print("🔖 Clase cambiada a 1")
+        print("Clase cambiada a 1")
         class_lines.append(len(x_vals)); time.sleep(0.3)
     elif keyboard.is_pressed("2"):
         current_class = "Clase 2"; class_numeric = 2
-        print("🔖 Clase cambiada a 2")
+        print("Clase cambiada a 2")
         class_lines.append(len(x_vals)); time.sleep(0.3)
     elif keyboard.is_pressed("3"):
         current_class = "Clase 3"; class_numeric = 3
-        print("🔖 Clase cambiada a 3")
+        print("Clase cambiada a 3")
         class_lines.append(len(x_vals)); time.sleep(0.3)
 
     line = ser.readline().decode("utf-8", errors="ignore").strip()
@@ -115,13 +115,13 @@ df = pd.DataFrame(data, columns=["Tiempo[ms]", "RED", "IR", "GREEN", "Clase"])
 
 # --- GUARDAR CSV ---
 df.to_csv(OUTPUT_FILE, index=False)
-print(f"✅ Datos guardados en {OUTPUT_FILE}")
+print(f"Datos guardados en {OUTPUT_FILE}")
 
 # --- GUARDAR FIGURA ---
 FIG_FILE = os.path.splitext(OUTPUT_FILE)[0] + ".png"
 plt.ioff()
 fig.savefig(FIG_FILE, dpi=300)
-print(f"🖼️ Figura guardada en {FIG_FILE}")
+print(f"Figura guardada en {FIG_FILE}")
 
 plt.show()
  
