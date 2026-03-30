@@ -4,7 +4,7 @@ Este proyecto usa el sensor MAX30101 junto con un Arduino y un script en
 Python para registrar señales PPG en tiempo real (RED, IR y GREEN) y
 clasificarlas en diferentes momentos (Clase 1, Clase 2, Clase 3).
 
-🚀 Requisitos Hardware
+Requisitos Hardware
 
 -   Sensor MAX30101
 -   Arduino (UNO, Nano, etc.)
@@ -23,7 +23,7 @@ Instalación de librerías en Python:
 
 pip install pyserial pandas matplotlib keyboard
 
-📡 Funcionamiento
+Funcionamiento
 
 1.  Conectar el MAX30101 al Arduino por I2C (SDA, SCL).
 2.  Cargar el código de Arduino que envía: Tiempo[ms], RED, IR, GREEN
@@ -35,7 +35,7 @@ pip install pyserial pandas matplotlib keyboard
     -   Un archivo .csv con todos los datos y su clase.
     -   Una imagen .png con la gráfica de las señales y las clases.
 
-📂 Archivos Generados
+Archivos Generados
 
 -   max30101_datos_YYYYMMDD_HHMMSS.csv → Datos crudos con etiqueta de
     clase.
